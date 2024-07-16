@@ -1,0 +1,22 @@
+/ {
+	aliases {
+		led = &led0;
+		button = &user_button;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		led0: red_led {
+			gpios = <&gpio0 7 GPIO_ACTIVE_LOW>;
+		};
+	};
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		user_button: button {
+			label = "User SW1";
+			gpios = <&gpio0 9 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			zephyr,code = <INPUT_KEY_0>;
+		};
+	};
+};

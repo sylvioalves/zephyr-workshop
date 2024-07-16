@@ -1,0 +1,88 @@
+config MQTT_SERVICE_CLIENT_ID
+	string "MQTT client ID"
+	default "esp32_client"
+	help
+		MQTT client ID.
+
+config MQTT_SERVICE_SERVER_DOMAIN_NAME
+	string "MQTT broker domain name"
+	default "localhost"
+	help
+		MQTT server (broker) domain name.
+
+config MQTT_SERVICE_SERVER_FALLBACK_IP_ADDRESS
+	string "MQTT broker fallback IP address"
+	default "127.0.0.1"
+	help
+		MQTT server (broker) IP address which will be used
+		as fallback if DNS lookup fails. Take care that correct
+		IP protocol address format is used.
+		For example, IPv4 address should look like:
+
+		127.0.0.1
+
+config MQTT_SERVICE_SERVER_PORT
+	int "MQTT broker port"
+	default 1883
+	help
+		Port on which MQTT broker expects MQTT requests.
+		Default port for unencrypted MQTT transport is 1833.
+		Default port for encrypted MQTT through TLS transport is 8883.
+
+config MQTT_SERVICE_CONNECTION_TIMEOUT_MS
+	int "MQTT connection timeout"
+	default 2000
+	help
+		MQTT service connection timeout in milliseconds.
+
+config MQTT_SERVICE_THREAD_STACK_SIZE
+	int "MQTT service thread stack size"
+	default 3072
+	help
+		Stack size used by internal mqtt polling thread.
+
+config MQTT_SERVICE_RX_BUFFER_SIZE
+	int "MQTT RX buffer size"
+	default 256
+	help
+		MQTT RX buffer size in bytes.
+
+config MQTT_SERVICE_TX_BUFFER_SIZE
+	int "MQTT TX buffer size"
+	default 256
+	help
+		MQTT TX buffer size in bytes.
+
+config MQTT_SERVICE_PAYLOAD_BUFFER_SIZE
+	int "MQTT payload buffer size"
+	default 1024
+	help
+		MQTT payload buffer is used for receiving large payload data. This buffer
+		is usually used to store data from MQTT_EVT_PUBLISH events.
+
+config WIFI_SSID
+	string "Wi-Fi SSID"
+	default "esp-workshop"
+	help
+		MQTT payload buffer is used for receiving large payload data. This buffer
+		is usually used to store data from MQTT_EVT_PUBLISH events.
+
+config WIFI_PSK
+	string "Wi-Fi PSK"
+	default "esp32-c6"
+	help
+		MQTT payload buffer is used for receiving large payload data. This buffer
+		is usually used to store data from MQTT_EVT_PUBLISH events.
+
+config MQTT_DEVICE_NAME
+	string "MQTT device name"
+	default "esp32"
+	help
+		MQTT device name.
+
+# Logging subsystem configuration:
+module = MQTT_SERVICE
+module-str = mqtt_service
+source "subsys/logging/Kconfig.template.log_config"
+
+source "Kconfig.zephyr"

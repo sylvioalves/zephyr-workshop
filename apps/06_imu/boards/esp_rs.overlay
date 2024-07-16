@@ -1,0 +1,31 @@
+/ {
+	aliases {
+		led = &led0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		led0: red_led {
+			gpios = <&gpio0 7 GPIO_ACTIVE_LOW>;
+		};
+	};
+
+};
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_STANDARD>;
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-names = "default";
+
+	icm42670@68 {
+		compatible = "invensense,icm42670-temp";
+		reg = <0x68>;
+		status = "okay";
+		// int-gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
+		accel-hz = <800>;
+		accel-fs = <16>;
+		gyro-hz = <800>;
+		gyro-fs = <2000>;
+	};
+};
